@@ -20,6 +20,64 @@ public class Backtracking {
 		// NQueen2(new boolean[4][4], 0, "");
 
 	}
+	
+	public static void QueenPermutation(boolean boxes[], int qpsf, int tq, String ans) {
+
+		if (tq == qpsf) {
+			System.out.println(ans);
+			return;
+		}
+
+		for (int i = 0; i < boxes.length; i++) {
+			if (boxes[i] == false) {
+				boxes[i] = true;
+				QueenPermutation(boxes, qpsf + 1, tq, ans + "q" + qpsf + "b" + i);
+				boxes[i] = false;
+			}
+		}
+	}
+	
+	public static void QueenCombination(boolean boxes[], int qpsf, int tq, String ans, int lastBoxUsed) {
+
+		if (tq == qpsf) {
+			System.out.println(ans);
+			return;
+		}
+
+		for (int i = lastBoxUsed + 1; i < boxes.length; i++) {
+			boxes[i] = true;
+			QueenCombination(boxes, qpsf + 1, tq, ans + "q" + qpsf + "b" + i, i);
+			boxes[i] = false;
+		}
+	}
+	
+	public static void CoinChange(int denom[], int amount, String ans, int lastdenomUsed) {
+
+		if (amount == 0) {
+			System.out.println(ans);
+			return;
+		}
+
+		for (int i = lastdenomUsed; i < denom.length; i++) {
+			if (amount >= denom[i]) {
+				CoinChange(denom, amount - denom[i], ans + denom[i], i);
+			}
+		}
+	}
+
+	public static void CoinChangeP(int denom[], int amount, String ans) {
+
+		if (amount == 0) {
+			System.out.println(ans);
+			return;
+		}
+
+		for (int i = 0; i < denom.length; i++) {
+			if (amount >= denom[i]) {
+				CoinChangeP(denom, amount - denom[i], ans + denom[i]);
+			}
+		}
+	}
 
 	public static void QueenCombinationBoxRespect(boolean[] board, int col, int tq, int qpsf, String ans) {
 
