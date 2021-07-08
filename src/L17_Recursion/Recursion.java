@@ -69,6 +69,51 @@ public class Recursion {
 
 		System.out.println(start);
 	}
+	
+	public static boolean isSorted(int[] arr, int si) {
+		if (si == arr.length - 1) {
+			return true;
+		}
+		if (arr[si] > arr[si + 1]) {
+			return false;
+		} else {
+			boolean restAns = isSorted(arr, si + 1);
+			return restAns;
+		}
+	}
+	
+	public static void pattern3(int N, int row, int col) {
+		if (row > N) {
+			return;
+		}
+
+		if (col > row) {
+			System.out.println();
+			pattern3(N, row + 1, 1);
+			return;
+		}
+
+		System.out.print("*\t");
+		pattern3(N, row, col + 1);
+	}
+	
+	public static void bubbleSort(int[] arr, int si, int li) {
+		if (li == 0) {
+			return;
+		}
+		if (si == li) {
+			bubbleSort(arr, 0, li - 1);
+			return;
+		}
+		if (arr[si] > arr[si + 1]) {
+			int temp = arr[si];
+			arr[si] = arr[si + 1];
+			arr[si + 1] = temp;
+		}
+		bubbleSort(arr, si + 1, li);
+	}
+	
+	
 
 	// BP : n!
 	public static int factorial(int n) {
