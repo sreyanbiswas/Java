@@ -182,6 +182,24 @@ public class Recursion3 {
 		mazePath(cr + 1, cc, er, ec, ans + "V");
 		mazePath(cr + 1, cc + 1, er, ec, ans + "D");
 	}
+	
+	public static int countBoardPath(int curr, int end) {
+
+		if (curr == end) {
+			return 1;
+		}
+
+		if (curr > end) {
+			return 0;
+		}
+
+		int count = 0;
+		for (int dice = 1; dice <= 6; dice++) {
+			count += countBoardPath(curr + dice, end);
+		}
+
+		return count;
+	}
 
 	public static void permutation(String ques, String ans) {
 
