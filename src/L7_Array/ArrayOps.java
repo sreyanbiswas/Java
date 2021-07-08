@@ -459,5 +459,95 @@ public class ArrayOps {
 		return count;
 
 	}
+	
+	public static int lowerBound(int[] arr,int data) {
+		int low=0,high=arr.length-1;
+		int ans=-1;
+		while(low<=high) {
+			int mid=(low+high)/2;
+			if(arr[mid]==data) {
+				ans=mid;
+				high=mid-1;
+			}else if(data<arr[mid]) {
+				high=mid-1;
+			}else {
+				low=mid+1;
+			}
+			
+		}
+		
+		return ans;
+	}
+	
+	public static int upperBound(int[] arr,int data) {
+		int low=0,high=arr.length-1;
+		int ans=-1;
+		while(low<=high) {
+			int mid=(low+high)/2;
+			if(arr[mid]==data) {
+				ans=mid;
+				low=mid+1;
+			}else if(data<arr[mid]) {
+				high=mid-1;
+			}else {
+				low=mid+1;
+			}
+			
+		}
+		
+		return ans;
+	}
+	
+	public static void bubbleSort(int[] arr) {
+
+		for (int counter = 0; counter < arr.length - 1; counter++) {
+
+			for (int j = 0; j < arr.length - 1 - counter; j++) {
+
+				if (arr[j] > arr[j + 1]) {
+					int temp = arr[j];
+					arr[j] = arr[j + 1];
+					arr[j + 1] = temp;
+				}
+			}
+		}
+
+	}
+
+	public static void selectionSort(int[] arr) {
+
+		for (int counter = 0; counter < arr.length - 1; counter++) {
+
+			int min = counter;
+
+			for (int j = counter + 1; j <= arr.length - 1; j++) {
+
+				if (arr[j] < arr[min])
+					min = j;
+			}
+
+			int temp = arr[min];
+			arr[min] = arr[counter];
+			arr[counter] = temp;
+		}
+	}
+
+	public static void insertionSort(int[] arr) {
+
+		for (int counter = 1; counter <= arr.length - 1; counter++) {
+
+			int val = arr[counter];
+
+			int j = counter - 1;
+			while (j >= 0 && arr[j] > val) {
+				arr[j + 1] = arr[j];
+				j--;
+			}
+
+			arr[j + 1] = val;
+
+		}
+
+	}
 
 }
