@@ -7,12 +7,12 @@ public class HeapGeneric<T extends Comparable<T>> {
 
 	ArrayList<T> data = new ArrayList<>();
 
-	HashMap<T, Integer> map = new HashMap<>();
+	
 
 	public void add(T item) {
 
 		data.add(item);
-		map.put(item, this.data.size() - 1);
+		
 		upheapify(data.size() - 1);
 	}
 
@@ -34,8 +34,7 @@ public class HeapGeneric<T extends Comparable<T>> {
 		data.set(i, jth);
 		data.set(j, ith);
 
-		map.put(ith, j);
-		map.put(jth, i);
+		
 
 	}
 
@@ -57,7 +56,7 @@ public class HeapGeneric<T extends Comparable<T>> {
 		T rv = this.data.remove(this.data.size() - 1);
 		downheapify(0);
 
-		map.remove(rv);
+		
 		return rv;
 	}
 
