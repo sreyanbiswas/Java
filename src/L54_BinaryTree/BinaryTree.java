@@ -649,6 +649,178 @@ public class BinaryTree {
 		}
 
 	}
+	
+	 public void topView() {
+
+		HashMap<Integer, ArrayList<Integer>> map = new HashMap<>();
+		Queue<VOPair> q = new LinkedList<>();
+
+		VOPair sp = new VOPair(root, 0);
+		q.add(sp);
+
+		while (!q.isEmpty()) {
+
+			// remove
+			VOPair rp = q.remove();
+
+			// check if entry is already present with rp.vl ? If no, then make an entry
+			if (!map.containsKey(rp.vl))
+				map.put(rp.vl, new ArrayList<>());
+
+			// add the data of node in map
+			map.get(rp.vl).add(rp.n.data);
+
+			// left child
+			if (rp.n.left != null) {
+				VOPair left = new VOPair(rp.n.left, rp.vl - 1);
+				q.add(left);
+			}
+
+			// right child
+			if (rp.n.right != null) {
+				VOPair right = new VOPair(rp.n.right, rp.vl + 1);
+				q.add(right);
+			}
+
+		}
+
+		ArrayList<Integer> keys = new ArrayList<>(map.keySet());
+		Collections.sort(keys);
+
+		for (int key : keys) {
+			System.out.println(key + " -> " + map.get(key).get(0));
+		}
+
+	}
+
+     public void bottomView() {
+
+		HashMap<Integer, ArrayList<Integer>> map = new HashMap<>();
+		Queue<VOPair> q = new LinkedList<>();
+
+		VOPair sp = new VOPair(root, 0);
+		q.add(sp);
+
+		while (!q.isEmpty()) {
+
+			// remove
+			VOPair rp = q.remove();
+
+			// check if entry is already present with rp.vl ? If no, then make an entry
+			if (!map.containsKey(rp.vl))
+				map.put(rp.vl, new ArrayList<>());
+
+			// add the data of node in map
+			map.get(rp.vl).add(rp.n.data);
+
+			// left child
+			if (rp.n.left != null) {
+				VOPair left = new VOPair(rp.n.left, rp.vl - 1);
+				q.add(left);
+			}
+
+			// right child
+			if (rp.n.right != null) {
+				VOPair right = new VOPair(rp.n.right, rp.vl + 1);
+				q.add(right);
+			}
+
+		}
+
+		ArrayList<Integer> keys = new ArrayList<>(map.keySet());
+		Collections.sort(keys);
+
+		for (int key : keys) {
+            int last = map.get(key).size()-1;
+			System.out.println(key + " -> " + map.get(key).get(last));
+		}
+
+	}
+    private class HOPair{
+        Node n;
+        int hl;
+        public HOPair(Node n,int hl){
+            this.n = n;
+            this.hl = hl;
+        }
+    }
+    public void levelOrder(){
+        HashMap<Integer,ArrayList<Integer>> map = new HashMap<>();
+        Queue<HOPair> q = new LinkedList<>();
+        HOPair sp = new HOPair(root,0);
+        q.add(sp);
+        while(!q.isEmpty()){
+            HOPair rp = q.remove();
+            if(!map.containsKey(rp.hl)){
+                map.put(rp.hl,new ArrayList<>());
+            }
+            map.get(rp.hl).add(rp.n.data);
+            if(rp.n.left!=null){
+                HOPair left = new HOPair(rp.n.left,rp.hl+1);
+                q.add(left);
+            }
+            if(rp.n.right!=null){
+                HOPair right = new HOPair(rp.n.right,rp.hl+1);
+                q.add(right);
+            }
+        }
+        ArrayList<Integer> keys = new ArrayList<>(map.keySet());
+        for(int key:keys){
+            System.out.println(key+" -> "+map.get(key));
+        }
+    }
+
+    public void leftView(){
+        HashMap<Integer,ArrayList<Integer>> map = new HashMap<>();
+        Queue<HOPair> q = new LinkedList<>();
+        HOPair sp = new HOPair(root,0);
+        q.add(sp);
+        while(!q.isEmpty()){
+            HOPair rp = q.remove();
+            if(!map.containsKey(rp.hl)){
+                map.put(rp.hl,new ArrayList<>());
+            }
+            map.get(rp.hl).add(rp.n.data);
+            if(rp.n.left!=null){
+                HOPair left = new HOPair(rp.n.left,rp.hl+1);
+                q.add(left);
+            }
+            if(rp.n.right!=null){
+                HOPair right = new HOPair(rp.n.right,rp.hl+1);
+                q.add(right);
+            }
+        }
+        ArrayList<Integer> keys = new ArrayList<>(map.keySet());
+        for(int key:keys){
+            System.out.println(key+" -> "+map.get(key).get(0));
+        }
+    }
+
+     public void rightView(){
+        HashMap<Integer,ArrayList<Integer>> map = new HashMap<>();
+        Queue<HOPair> q = new LinkedList<>();
+        HOPair sp = new HOPair(root,0);
+        q.add(sp);
+        while(!q.isEmpty()){
+            HOPair rp = q.remove();
+            if(!map.containsKey(rp.hl)){
+                map.put(rp.hl,new ArrayList<>());
+            }
+            map.get(rp.hl).add(rp.n.data);
+            if(rp.n.left!=null){
+                HOPair left = new HOPair(rp.n.left,rp.hl+1);
+                q.add(left);
+            }
+            if(rp.n.right!=null){
+                HOPair right = new HOPair(rp.n.right,rp.hl+1);
+                q.add(right);
+            }
+        }
+        ArrayList<Integer> keys = new ArrayList<>(map.keySet());
+        for(int key:keys){
+            System.out.println(key+" -> "+map.get(key).get(map.get(key).size()-1));
+        }
+    }
 
 	public int min() {
 		return min(root);
