@@ -92,6 +92,29 @@ public class BinaryTree {
 		return nn;
 
 	}
+	
+	public BinaryTree(int post[],int in[]){
+        root = construct(post,0,post.length-1,in,0,in.length-1);
+    }
+    private Node construct(int post[],int plo,int phi,int in[],int ilo,int ihi){
+        if(plo>phi || ilo>ihi){
+            return null;
+        }
+        Node nn = new Node();
+        nn.data = post[phi];
+        int nel=0;
+        int si=-1;
+        for(int i=ilo;i<=ihi;i++){
+            if(in[i]==post[phi]){
+                si=i;
+                break;
+            }
+            nel++;
+        }
+        nn.left = construct(post,plo,plo+nel-1,in,ilo,si-1);
+        nn.right = construct(post,plo+nel,phi-1,in,si+1,ihi);
+        return nn;
+    }
 
 	public void display() {
 
