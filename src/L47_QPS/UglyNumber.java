@@ -41,7 +41,7 @@ public class UglyNumber {
 //			System.out.println(i + " -> " + strg[i]);
 //		}
 		
-		return strg[n] ;
+		return strg[n-1] ;
 
 	}
 
